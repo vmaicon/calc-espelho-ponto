@@ -1,0 +1,139 @@
+{
+  "feriados": [
+    {
+      "data": "2025-01-01",
+      "descricao": "Confraternização Universal",
+      "tipo": "nacional"
+    },
+    {
+      "data": "2025-01-20",
+      "descricao": "Dia do Católico",
+      "tipo": "estadual"
+    },
+    {
+      "data": "2025-01-24",
+      "descricao": "Dia do Evangélico",
+      "tipo": "estadual"
+    },
+    {
+      "data": "2025-03-03",
+      "descricao": "Carnaval",
+      "tipo": "estadual"
+    },
+    {
+      "data": "2025-03-04",
+      "descricao": "Carnaval",
+      "tipo": "estadual" 
+    },
+    {
+      "data": "2025-03-05",
+      "descricao": "Quarta-feira de Cinzas",
+      "tipo": "estadual"
+    },
+    {
+      "data": "2025-03-08",
+      "descricao": "Dia Internacional da Mulher",
+      "tipo": "estadual"
+    },
+    {
+      "data": "2025-04-17",
+      "descricao": "Quinta-feira Santa",
+      "tipo": "estadual"
+    },
+    {
+      "data": "2025-04-18",
+      "descricao": "Sexta-feira da Paixão",
+      "tipo": "nacional"
+    },
+    {
+      "data": "2025-04-21",
+      "descricao": "Tiradentes",
+      "tipo": "nacional"
+    },
+    {
+      "data": "2025-05-01",
+      "descricao": "Dia do Trabalho",
+      "tipo": "nacional"
+    },
+    {
+      "data": "2025-06-15",
+      "descricao": "Aniversário do Estado do Acre",
+      "tipo": "estadual"
+    },
+    {
+      "data": "2025-06-19",
+      "descricao": "Corpus Christi",
+      "tipo": "facultativo"
+    },
+    {
+      "data": "2025-08-06",
+      "descricao": "Início da Revolução Acreana",
+      "tipo": "facultativo"
+    },
+    {
+      "data": "2025-08-11",
+      "descricao": "Dia do Advogado",
+      "tipo": "regimental"
+    },
+    {
+      "data": "2025-09-05",
+      "descricao": "Dia da Amazônia",
+      "tipo": "estadual"
+    },
+    {
+      "data": "2025-09-07",
+      "descricao": "Independência do Brasil", 
+      "tipo": "nacional"
+    },
+    {
+      "data": "2025-10-12",
+      "descricao": "Nossa Senhora de Aparecida",
+      "tipo": "nacional"
+    },
+    {
+      "data": "2025-10-28",
+      "descricao": "Dia do Servidor Público",
+      "tipo": "estadual"
+    },
+    {
+      "data": "2025-11-02",
+      "descricao": "Finados",
+      "tipo": "nacional"
+    },
+    {
+      "data": "2025-11-15",
+      "descricao": "Proclamação da República",
+      "tipo": "nacional"
+    },
+    {
+      "data": "2025-11-17",
+      "descricao": "Tratado de Petrópolis",
+      "tipo": "estadual"
+    },
+    {
+      "data": "2025-11-20",
+      "descricao": "Dia da Consciência Negra",
+      "tipo": "nacional"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "Dia da Justiça",
+      "tipo": "regimental"
+    },
+    {
+      "data": "2025-12-24",
+      "descricao": "Véspera de Natal",
+      "tipo": "facultativo"
+    },
+    {
+      "data": "2025-12-25",
+      "descricao": "Natal",
+      "tipo": "nacional"
+    },
+    {
+      "data": "2025-12-31",
+      "descricao": "Véspera de Ano Novo",
+      "tipo": "facultativo"
+    }
+  ]
+}

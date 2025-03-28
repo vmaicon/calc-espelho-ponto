@@ -1,0 +1,23 @@
+/*
+Theme Name: TJAC
+Theme URI: 
+Author: GESIS - Gerência de Sistemas - DITEC - Diretoria de Tecnologia da Informação
+Author URI: https://www.tjac.jus.br;
+Description: Sitio Tribunal de Justiça do Estado do Acre - Ano 2018
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+*/
+
+@import url("assets/css/style.css");
+@import url("assets/css/style-tj.css");
+@import url("assets/css/pushy.css");
+@import url("assets/css/contrast.css");
+:root {
+    --cor-site: #A01128;
+    /*Cor padrão Verde*/
+    // --cor-site: #037A6C; /* Verde */
+    //--cor-site: #FF99CC; /*Outubro Rosa*/
+    //--cor-site: #00AFF0; /*Novembro Azul*/
+    //--cor-site: #FFCB00; /*Algo Mais Amarelo*/
+}
