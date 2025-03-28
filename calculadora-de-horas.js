@@ -1,11 +1,43 @@
 let total_horas = new Array();
 let dias_trabalhado = 0;
-let feriados = [];
+let dias_folgas =[
+    { data: "06/03/2025", descricao: "50 - FOLGA RECESSO FORENSE (GOZO)", tipo: "pesssoal" },
+    { data: "07/03/2025", descricao: "50 - FOLGA RECESSO FORENSE (GOZO)", tipo: "pesssoal" },
+];
+let feriados = [
+    { data: "01/01/2025", descricao: "Confraternização Universal", tipo: "nacional" },
+    { data: "20/01/2025", descricao: "Dia do Católico", tipo: "estadual" },
+    { data: "24/01/2025", descricao: "Dia do Evangélico", tipo: "estadual" },
+    { data: "03/03/2025", descricao: "Carnaval", tipo: "estadual" },
+    { data: "04/03/2025", descricao: "Carnaval", tipo: "estadual" },
+    { data: "05/03/2025", descricao: "Quarta-feira de Cinzas", tipo: "estadual" },
+    { data: "08/03/2025", descricao: "Dia Internacional da Mulher", tipo: "estadual" },
+    { data: "17/04/2025", descricao: "Quinta-feira Santa", tipo: "estadual" },
+    { data: "18/04/2025", descricao: "Sexta-feira da Paixão", tipo: "nacional" },
+    { data: "21/04/2025", descricao: "Tiradentes", tipo: "nacional" },
+    { data: "01/05/2025", descricao: "Dia do Trabalho", tipo: "nacional" },
+    { data: "15/06/2025", descricao: "Aniversário do Estado do Acre", tipo: "estadual" },
+    { data: "19/06/2025", descricao: "Corpus Christi", tipo: "facultativo" },
+    { data: "06/08/2025", descricao: "Início da Revolução Acreana", tipo: "facultativo" },
+    { data: "11/08/2025", descricao: "Dia do Advogado", tipo: "regimental" },
+    { data: "05/09/2025", descricao: "Dia da Amazônia", tipo: "estadual" },
+    { data: "07/09/2025", descricao: "Independência do Brasil", tipo: "nacional" },
+    { data: "12/10/2025", descricao: "Nossa Senhora de Aparecida", tipo: "nacional" },
+    { data: "28/10/2025", descricao: "Dia do Servidor Público", tipo: "estadual" },
+    { data: "02/11/2025", descricao: "Finados", tipo: "nacional" },
+    { data: "15/11/2025", descricao: "Proclamação da República", tipo: "nacional" },
+    { data: "17/11/2025", descricao: "Tratado de Petrópolis", tipo: "estadual" },
+    { data: "20/11/2025", descricao: "Dia da Consciência Negra", tipo: "nacional" },
+    { data: "08/12/2025", descricao: "Dia da Justiça", tipo: "regimental" },
+    { data: "24/12/2025", descricao: "Véspera de Natal", tipo: "facultativo" },
+    { data: "25/12/2025", descricao: "Natal", tipo: "nacional" },
+    { data: "31/12/2025", descricao: "Véspera de Ano Novo", tipo: "facultativo" }
+];
 
 // Função para carregar os feriados do arquivo JSON
 async function carregarFeriados() {
     try {
-        const response = await fetch('feriados-2025.json');
+        const response = await fetch('http://localhost:8080/feriados-2025.json');
         const data = await response.json();
         feriados = data.feriados;
     } catch (error) {
@@ -15,8 +47,17 @@ async function carregarFeriados() {
 
 // Função para verificar se uma data é feriado
 function isFeriado(date) {
-    const dataFormatada = date.toISOString().split('T')[0];
+    // Formata a data recebida para DD/MM/YYYY
+    const dataFormatada = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+    // Verifica se existe algum feriado com a data formatada
     return feriados.some(feriado => feriado.data === dataFormatada);
+}
+// Função para verificar se uma data é folga
+function isFolga(date) {
+    // Formata a data recebida para DD/MM/YYYY
+    const dataFormatada = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+    // Verifica se existe algum feriado com a data formatada
+    return dias_folgas.some(folga => folga.data === dataFormatada);
 }
 
 function setaHoras() {
@@ -50,17 +91,32 @@ function aplicaFormatacaoFimDeSemana() {
                 const dateObj = new Date(year, month - 1, day);
                 const dayOfWeek = dateObj.getDay();
                 const ehFeriado = isFeriado(dateObj);
+                const ehFolga = isFolga(dateObj);
 
                 // Aplica formatação para fins de semana e feriados
-                if (dayOfWeek === 0 || dayOfWeek === 6 || ehFeriado) {
+                if (dayOfWeek === 0 || dayOfWeek === 6 || ehFeriado || ehFolga) {
                     // Altera a cor da linha (amarelo para fins de semana, vermelho claro para feriados)
-                    tr.style.backgroundColor = ehFeriado ? "#ffcccc" : "#fad889";
+                    if (ehFolga) {
+                        tr.style.backgroundColor = "#c2f0c2"; // Verde claro para folgas
+                    } else if (ehFeriado) {
+                        tr.style.backgroundColor = "#ffcccc"; // Vermelho claro para feriados
+                    } else {
+                        tr.style.backgroundColor = "#fad889"; // Amarelo para fins de semana
+                    }
                     
                     // Adiciona '--' em cada célula, exceto na célula "Total"
                     const tds = tr.querySelectorAll('td:not([data-title="Total"])');
                     tds.forEach(td => {
                         if (!td.hasAttribute('data-title') || (td.getAttribute('data-title') !== 'Dia' && td.getAttribute('data-title') !== 'Data')) {
-                            td.innerHTML = '--';
+                            if (ehFolga) {
+                                const folga = dias_folgas.find(f => f.data === `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`);
+                                td.innerHTML = folga ? folga.descricao : '--';
+                            } else if (ehFeriado) {
+                                const feriado = feriados.find(f => f.data === `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`);
+                                td.innerHTML = feriado ? feriado.descricao : '--';
+                            } else {
+                                td.innerHTML = '--';
+                            }
                         }
                     });
                 }
@@ -132,10 +188,10 @@ function criarBotaoNoTopo() {
     });
 
     // Adiciona um evento ao botão
-    botao.addEventListener("click", async () => {
-        await carregarFeriados();
-        setaHoras();
+    botao.addEventListener("click", () => {
+        // await carregarFeriados(); // Carrega os feriados antes de calcular
         aplicaFormatacaoFimDeSemana();
+        setaHoras();
         let mensagem = "Saldo horas: " + calcularSaldoHoras(total_horas)+ "\nDias trabalhados: " + dias_trabalhado;
         alert(mensagem);
     });
@@ -143,3 +199,5 @@ function criarBotaoNoTopo() {
     // Adiciona o botão ao corpo do documento
     document.body.appendChild(botao);
 }
+
+criarBotaoNoTopo();
