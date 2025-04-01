@@ -4,35 +4,46 @@ let dias_folgas = [
     { data: "06/03/2025", descricao: "50 - FOLGA RECESSO FORENSE (GOZO)", tipo: "pesssoal" },
     { data: "07/03/2025", descricao: "50 - FOLGA RECESSO FORENSE (GOZO)", tipo: "pesssoal" },
 ];
-let feriados = [
-    { data: "01/01/2025", descricao: "Confraternização Universal", tipo: "nacional" },
-    { data: "20/01/2025", descricao: "Dia do Católico", tipo: "estadual" },
-    { data: "24/01/2025", descricao: "Dia do Evangélico", tipo: "estadual" },
+// Função para gerar feriados nacionais baseado no ano
+function getFeriadosNacionais(ano) {
+    return [
+        { data: `01/01/${ano}`, descricao: "Confraternização Universal", tipo: "nacional" },
+        { data: `21/04/${ano}`, descricao: "Tiradentes", tipo: "nacional" },
+        { data: `01/05/${ano}`, descricao: "Dia do Trabalho", tipo: "nacional" },
+        { data: `07/09/${ano}`, descricao: "Independência do Brasil", tipo: "nacional" },
+        { data: `12/10/${ano}`, descricao: "Nossa Senhora de Aparecida", tipo: "nacional" },
+        { data: `02/11/${ano}`, descricao: "Finados", tipo: "nacional" },
+        { data: `15/11/${ano}`, descricao: "Proclamação da República", tipo: "nacional" },
+        { data: `20/11/${ano}`, descricao: "Dia da Consciência Negra", tipo: "nacional" },
+        { data: `25/12/${ano}`, descricao: "Natal", tipo: "nacional" },
+        { data: `20/01/${ano}`, descricao: "Dia do Católico", tipo: "estadual" },
+        { data: `24/01/${ano}`, descricao: "Dia do Evangélico", tipo: "estadual" },
+        { data: `08/03/${ano}`, descricao: "Dia Internacional da Mulher", tipo: "estadual" },
+        { data: `15/06/${ano}`, descricao: "Aniversário do Estado do Acre", tipo: "estadual" },
+        { data: `06/08/${ano}`, descricao: "Início da Revolução Acreana", tipo: "facultativo" },
+        { data: `11/08/${ano}`, descricao: "Dia do Advogado", tipo: "regimental" },
+        { data: `05/09/${ano}`, descricao: "Dia da Amazônia", tipo: "estadual" },
+        { data: `28/10/${ano}`, descricao: "Dia do Servidor Público", tipo: "estadual" },
+        { data: `17/11/${ano}`, descricao: "Tratado de Petrópolis", tipo: "estadual" },
+        { data: `08/12/${ano}`, descricao: "Dia da Justiça", tipo: "regimental" },
+        { data: `24/12/${ano}`, descricao: "Véspera de Natal", tipo: "facultativo" },
+        { data: `31/12/${ano}`, descricao: "Véspera de Ano Novo", tipo: "facultativo" }
+        
+    ];
+}
+
+// Lista de feriados específicos do estado/região para 2025
+let feriadosEspecificos = [
     { data: "03/03/2025", descricao: "Carnaval", tipo: "estadual" },
     { data: "04/03/2025", descricao: "Carnaval", tipo: "estadual" },
     { data: "05/03/2025", descricao: "Quarta-feira de Cinzas", tipo: "estadual" },
-    { data: "08/03/2025", descricao: "Dia Internacional da Mulher", tipo: "estadual" },
     { data: "17/04/2025", descricao: "Quinta-feira Santa", tipo: "estadual" },
     { data: "18/04/2025", descricao: "Sexta-feira da Paixão", tipo: "nacional" },
-    { data: "21/04/2025", descricao: "Tiradentes", tipo: "nacional" },
-    { data: "01/05/2025", descricao: "Dia do Trabalho", tipo: "nacional" },
-    { data: "15/06/2025", descricao: "Aniversário do Estado do Acre", tipo: "estadual" },
-    { data: "19/06/2025", descricao: "Corpus Christi", tipo: "facultativo" },
-    { data: "06/08/2025", descricao: "Início da Revolução Acreana", tipo: "facultativo" },
-    { data: "11/08/2025", descricao: "Dia do Advogado", tipo: "regimental" },
-    { data: "05/09/2025", descricao: "Dia da Amazônia", tipo: "estadual" },
-    { data: "07/09/2025", descricao: "Independência do Brasil", tipo: "nacional" },
-    { data: "12/10/2025", descricao: "Nossa Senhora de Aparecida", tipo: "nacional" },
-    { data: "28/10/2025", descricao: "Dia do Servidor Público", tipo: "estadual" },
-    { data: "02/11/2025", descricao: "Finados", tipo: "nacional" },
-    { data: "15/11/2025", descricao: "Proclamação da República", tipo: "nacional" },
-    { data: "17/11/2025", descricao: "Tratado de Petrópolis", tipo: "estadual" },
-    { data: "20/11/2025", descricao: "Dia da Consciência Negra", tipo: "nacional" },
-    { data: "08/12/2025", descricao: "Dia da Justiça", tipo: "regimental" },
-    { data: "24/12/2025", descricao: "Véspera de Natal", tipo: "facultativo" },
-    { data: "25/12/2025", descricao: "Natal", tipo: "nacional" },
-    { data: "31/12/2025", descricao: "Véspera de Ano Novo", tipo: "facultativo" }
+    { data: "19/06/2025", descricao: "Corpus Christi", tipo: "facultativo" }
 ];
+
+// Combina os feriados nacionais com os específicos
+let feriados = [...getFeriadosNacionais(2025), ...feriadosEspecificos];
 
 
 // Função para verificar se uma data é feriado
@@ -40,7 +51,9 @@ function isFeriado(date) {
     // Formata a data recebida para DD/MM/YYYY
     const dataFormatada = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
     // Verifica se existe algum feriado com a data formatada
-    return feriados.some(feriado => feriado.data === dataFormatada);
+    const ano = date.getFullYear();
+    const feriadosAno = [...getFeriadosNacionais(ano), ...feriadosEspecificos];
+    return feriadosAno.some(feriado => feriado.data === dataFormatada);
 }
 // Função para verificar se uma data é folga
 function isFolga(date) {
@@ -102,7 +115,7 @@ function aplicaFormatacaoFimDeSemana() {
                                 const folga = dias_folgas.find(f => f.data === `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`);
                                 td.innerHTML = folga ? folga.descricao : '--';
                             } else if (ehFeriado) {
-                                const feriado = feriados.find(f => f.data === `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`);
+                                const feriado = getFeriadosNacionais(year).concat(feriadosEspecificos).find(f => f.data === `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`);
                                 td.innerHTML = feriado ? feriado.descricao : '--';
                             } else {
                                 td.innerHTML = '--';
