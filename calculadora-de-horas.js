@@ -202,6 +202,8 @@ function atualizarTotais() {
 
     let saldoHoras = calcularSaldoHoras(total_horas) ?? 0; // Evita erro se a função retornar null/undefined
     let diasTrabalhados = dias_trabalhado ?? 0; // Evita erro caso a variável não esteja definida
+    let totalTrabalhado = somarTempos(total_horas) ?? 0; // Evita erro se a função retornar null/undefined
+    console.log('Total trabalhado:', totalTrabalhado);   
 
     // Remover div antiga para evitar duplicações
     const divExistente = divSectionInfo.querySelector('.totais-info');
@@ -215,6 +217,7 @@ function atualizarTotais() {
         <h1>Totais</h1>
         <p>Saldo de horas: ${saldoHoras}</p>
         <p>Dias trabalhados: ${diasTrabalhados}</p>
+        <p>Tempo total: ${totalTrabalhado}</p>
     `;
 
     divSectionInfo.appendChild(newDiv);
