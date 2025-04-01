@@ -177,35 +177,6 @@ function criarBotaoNoTopo() {
         cursor: "pointer",      // Cursor como mãozinha
     });
 
- 
-    // Adiciona o botão ao corpo do documento
-    document.body.appendChild(botao);
-}
-
-// Função para criar e posicionar o botão
-function criarBotaoNoTopo() {
-    // Cria o botão
-    const botao = document.createElement("button");
-
-    // Define o texto do botão
-    botao.innerText = "Calcula Horas";
-    botao.classList.add("ui-button", "ui-widget", "ui-state-default", "ui-corner-all", "ui-button-text-icon-left", "btn-main-action");
-
-    // Estiliza o botão para ficar fixo no topo e à frente
-    Object.assign(botao.style, {
-        position: "fixed",  // Fixa o botão em relação à janela
-        top: "70px",        // Distância do topo
-        right: "10px",      // Distância da direita
-        zIndex: "10000",    // Certifica-se de que está acima de outros elementos
-        padding: "10px 20px", // Estilização do botão
-        fontSize: "16px",     // Tamanho da fonte
-        backgroundColor: "#007BFF", // Cor de fundo
-        color: "#FFF",          // Cor do texto
-        border: "none",         // Sem borda
-        borderRadius: "5px",    // Bordas arredondadas
-        cursor: "pointer",      // Cursor como mãozinha
-    });
-
     // Adiciona um evento ao botão
     botao.addEventListener("click", () => {
         atualizarTotais();
