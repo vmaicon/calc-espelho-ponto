@@ -34,16 +34,6 @@ let feriados = [
     { data: "31/12/2025", descricao: "Véspera de Ano Novo", tipo: "facultativo" }
 ];
 
-// Função para carregar os feriados do arquivo JSON
-async function carregarFeriados() {
-    try {
-        const response = await fetch('http://localhost:8080/feriados-2025.json');
-        const data = await response.json();
-        feriados = data.feriados;
-    } catch (error) {
-        console.error('Erro ao carregar feriados:', error);
-    }
-}
 
 // Função para verificar se uma data é feriado
 function isFeriado(date) {
@@ -187,17 +177,78 @@ function criarBotaoNoTopo() {
         cursor: "pointer",      // Cursor como mãozinha
     });
 
+ 
+    // Adiciona o botão ao corpo do documento
+    document.body.appendChild(botao);
+}
+
+// Função para criar e posicionar o botão
+function criarBotaoNoTopo() {
+    // Cria o botão
+    const botao = document.createElement("button");
+
+    // Define o texto do botão
+    botao.innerText = "Calcula Horas";
+    botao.classList.add("ui-button", "ui-widget", "ui-state-default", "ui-corner-all", "ui-button-text-icon-left", "btn-main-action");
+
+    // Estiliza o botão para ficar fixo no topo e à frente
+    Object.assign(botao.style, {
+        position: "fixed",  // Fixa o botão em relação à janela
+        top: "70px",        // Distância do topo
+        right: "10px",      // Distância da direita
+        zIndex: "10000",    // Certifica-se de que está acima de outros elementos
+        padding: "10px 20px", // Estilização do botão
+        fontSize: "16px",     // Tamanho da fonte
+        backgroundColor: "#007BFF", // Cor de fundo
+        color: "#FFF",          // Cor do texto
+        border: "none",         // Sem borda
+        borderRadius: "5px",    // Bordas arredondadas
+        cursor: "pointer",      // Cursor como mãozinha
+    });
+
     // Adiciona um evento ao botão
     botao.addEventListener("click", () => {
-        // await carregarFeriados(); // Carrega os feriados antes de calcular
-        aplicaFormatacaoFimDeSemana();
-        setaHoras();
-        let mensagem = "Saldo horas: " + calcularSaldoHoras(total_horas)+ "\nDias trabalhados: " + dias_trabalhado;
-        alert(mensagem);
+        atualizarTotais();
     });
 
     // Adiciona o botão ao corpo do documento
     document.body.appendChild(botao);
 }
+
+function atualizarTotais() {
+    console.log("Atualizando totais...");
+    let divSectionInfo = document.querySelector('.section-info');
+
+    if (!divSectionInfo) {
+        // Criar a div se não existir e adicioná-la ao body
+        divSectionInfo = document.createElement('div');
+        divSectionInfo.className = "section-info";
+        document.body.appendChild(divSectionInfo);
+    }
+
+    aplicaFormatacaoFimDeSemana();
+    setaHoras();
+
+    let saldoHoras = calcularSaldoHoras(total_horas) ?? 0; // Evita erro se a função retornar null/undefined
+    let diasTrabalhados = dias_trabalhado ?? 0; // Evita erro caso a variável não esteja definida
+
+    // Remover div antiga para evitar duplicações
+    const divExistente = divSectionInfo.querySelector('.totais-info');
+    if (divExistente) {
+        divExistente.remove();
+    }
+
+    const newDiv = document.createElement('div');
+    newDiv.className = "totais-info col-lg-offset-5 col-lg-5 col-sm-offset-1 col-sm-8";
+    newDiv.innerHTML = `
+        <h1>Totais</h1>
+        <p>Saldo de horas: ${saldoHoras}</p>
+        <p>Dias trabalhados: ${diasTrabalhados}</p>
+    `;
+
+    divSectionInfo.appendChild(newDiv);
+}
+
+atualizarTotais();
 
 criarBotaoNoTopo();
