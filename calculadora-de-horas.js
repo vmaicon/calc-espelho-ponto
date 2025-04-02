@@ -1,9 +1,6 @@
 let total_horas = new Array();
 let dias_trabalhado = 0;
-let dias_folgas = [
-    { data: "06/03/2025", descricao: "50 - FOLGA RECESSO FORENSE (GOZO)", tipo: "pesssoal" },
-    { data: "07/03/2025", descricao: "50 - FOLGA RECESSO FORENSE (GOZO)", tipo: "pesssoal" },
-];
+let dias_folgas = [];
 // Função para gerar feriados nacionais baseado no ano
 function getFeriadosNacionais(ano) {
     return [
@@ -237,10 +234,10 @@ function pegarValorData() {
 
     inputTeste.addEventListener('click',() => {
         atualizarTotais();
-        location.reload()
     })
 }
 
 pegarValorData();
 
 atualizarTotais();
+criarBotaoNoTopo();
