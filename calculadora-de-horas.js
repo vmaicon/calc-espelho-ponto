@@ -227,6 +227,20 @@ function atualizarTotais() {
     divSectionInfo.appendChild(newDiv);
 }
 
-atualizarTotais();
+function pegarValorData() {
+    var inputTeste = document.getElementById('form:cboReferencia_c_panel')
+    var labelValue = document.getElementById('form:cboReferencia_c_label')
 
-criarBotaoNoTopo();
+    var dataTitle = document.querySelectorAll("[data-title]")[1].textContent
+
+    labelValue.innerText = dataTitle.split('/')[1] + '/' + dataTitle.split('/')[2]
+
+    inputTeste.addEventListener('click',() => {
+        atualizarTotais();
+        location.reload()
+    })
+}
+
+pegarValorData();
+
+atualizarTotais();
