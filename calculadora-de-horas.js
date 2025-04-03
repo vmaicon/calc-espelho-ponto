@@ -158,7 +158,7 @@ function calcularSaldoHoras(dates, horasDeTrabalho = 7) {
     // Retorna o saldo total em horas e minutos
     const horas = Math.floor(Math.abs(saldoTotal) / 60); // Horas inteiras
     const minutos = Math.abs(saldoTotal) % 60; // Minutos restantes
-    const sinal = saldoTotal < 0 ? "-" : "+"; // Determina se é sobra ou falta
+    const sinal = saldoTotal < 0 ? "⬇ " : "⬆ "; // Determina se é sobra ou falta
 
     return `${sinal}${horas}:${minutos.toString().padStart(2, '0')}`;
 }
