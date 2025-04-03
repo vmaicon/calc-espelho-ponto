@@ -1,5 +1,7 @@
-# Em container
+# Como utilizar este script
 
-Para subir o javascript em container use:
-
-`docker run --rm -dit -p 8080:80 --hostname calc --name calc -w /var/www/html -v .:/usr/share/nginx/html nginx:latest`
+- Instale a extensão em seu navegador, veja o [**vídeo**](https://www.youtube.com/watch?v=P5vJcBgVzPA)
+- Copie o script em formato raw [link](https://git.tjac.jus.br/maicon.araujo/claculadora-de-horas/-/raw/develop/calculadora-de-horas.js?ref_type=heads)
+- Cole no local indicado:
+- ![como adicionar o script em seu navevador](imagens/como-usar-parte-1.png)
+- ![ativar e atualizar a página do espelho de ponto](imagens/ativar-script-reload-page.png)
