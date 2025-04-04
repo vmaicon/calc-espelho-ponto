@@ -6,4 +6,11 @@
 - ![como adicionar o script em seu navevador](imagens/como-usar-parte-1.png)
 - ![ativar e atualizar a página do espelho de ponto](imagens/ativar-script-reload-page.png)
 
+## Resultado
+
+- Na página do espelho de ponto você verá as métricas conforme imagem abaixo:
+
+![na página do espelho de ponto](imagens/resultado-na-pagina.png)
+
+
 > Não funciona no na extensão do firefox
