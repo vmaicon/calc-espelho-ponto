@@ -13,4 +13,4 @@
 ![na página do espelho de ponto](imagens/resultado-na-pagina.png)
 
 
-> Não funciona no na extensão do firefox
+> Não funciona na extensão do firefox
