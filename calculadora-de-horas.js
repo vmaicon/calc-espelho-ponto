@@ -24,8 +24,8 @@ function getFeriadosNacionais(ano) {
         { data: `17/11/${ano}`, descricao: "Tratado de Petrópolis", tipo: "estadual" },
         { data: `08/12/${ano}`, descricao: "Dia da Justiça", tipo: "regimental" },
         { data: `24/12/${ano}`, descricao: "Véspera de Natal", tipo: "facultativo" },
+        { data: `28/12/${ano}`, descricao: "Aniversário do Município de Rio Branco", tipo: "municipal" },
         { data: `31/12/${ano}`, descricao: "Véspera de Ano Novo", tipo: "facultativo" }
-        
     ];
 }
 
@@ -36,6 +36,7 @@ let feriadosEspecificos = [
     { data: "05/03/2025", descricao: "Quarta-feira de Cinzas", tipo: "estadual" },
     { data: "17/04/2025", descricao: "Quinta-feira Santa", tipo: "estadual" },
     { data: "18/04/2025", descricao: "Sexta-feira da Paixão", tipo: "nacional" },
+    { data: `02/05/2025`, descricao: "Anterior ao dia do Trabalho: PORTARIA Nº 1750-2025", tipo: "facultativo" },
     { data: "19/06/2025", descricao: "Corpus Christi", tipo: "facultativo" }
 ];
 
